@@ -6,6 +6,7 @@ import LoginUI from "../views/LoginUI";
 import Login from "../containers/Login.js";
 import { ROUTES } from "../constants/routes";
 import { fireEvent, screen } from "@testing-library/dom";
+import { localStorageMock } from "../__mocks__/localStorage.js";
 
 describe("Given that I am a user on login page", () => {
   describe("When I do not fill fields and I click on employee button Login In", () => {
@@ -225,6 +226,65 @@ describe("Given that I am a user on login page", () => {
 
     test("It should renders HR dashboard page", () => {
       expect(screen.queryByText("Validations")).toBeTruthy();
+    });
+  });
+  describe("when store is unavailable", () => {
+    test("then login() returns null", async () => {
+      //TODO: revoir où mettre le test pour séparer des test d'intégrations
+      //arrange
+      function getLoginFormHTML() {
+        return LoginUI();
+      }
+      const store = null;
+      const loginHTML = getLoginFormHTML();
+      document.body.innerHTML = loginHTML;
+
+      const mockUser = {
+        email: "fake@email.com",
+        password: "fakepassword",
+      };
+
+      const loginInstance = new Login({
+        document: document,
+        store: store,
+        localStorage: localStorageMock,
+      });
+
+      //act
+      const result = loginInstance.login(mockUser);
+
+      //assert
+      expect(result).toBe(null);
+    });
+    //TODO: revoir où mettre le test pour séparer des test d'intégrations
+
+    test("then CreateUser() returns null", () => {
+      //arrange
+      function getLoginFormHTML() {
+        return LoginUI();
+      }
+      const store = null;
+      const loginHTML = getLoginFormHTML();
+      document.body.innerHTML = loginHTML;
+
+      const mockUser = {
+        type: "Employee",
+        name: "fake",
+        email: "fake@email.com",
+        password: "fakepassword",
+      };
+
+      const loginInstance = new Login({
+        document: document,
+        store: store,
+        localStorage: localStorageMock,
+      });
+
+      //act
+      const result = loginInstance.createUser(mockUser);
+
+      //assert
+      expect(result).toBe(null);
     });
   });
 });
