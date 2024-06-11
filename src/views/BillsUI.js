@@ -22,11 +22,11 @@ const row = (bill) => {
 // ** Bug Report 1 - Bills **
 // Tri du tableau d'objets "data" par ordre anti-chonologique dans variable sortedData
 const rows = (data) => {
-  const sortedData = data
-    .slice()
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-  return sortedData && sortedData.length
-    ? sortedData.map((bill) => row(bill)).join("")
+  return data && data.length
+    ? data
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map((bill) => row(bill))
+        .join("")
     : "";
 };
 
