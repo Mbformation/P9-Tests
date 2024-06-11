@@ -11,6 +11,9 @@ export default class Login {
     store,
   }) {
     this.document = document;
+    console.log(
+      this.document.querySelector(`form[data-testid="form-employee"]`)
+    );
     this.localStorage = localStorage;
     this.onNavigate = onNavigate;
     this.PREVIOUS_LOCATION = PREVIOUS_LOCATION;
@@ -59,6 +62,7 @@ export default class Login {
       ).value,
       status: "connected",
     };
+    console.log(this.login(user));
     this.localStorage.setItem("user", JSON.stringify(user));
     this.login(user)
       .catch((err) => this.createUser(user))
