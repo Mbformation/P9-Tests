@@ -159,6 +159,7 @@ describe("Given that I am a user on login page", () => {
     });
   });
 
+  // ******   --------    BUG REPORT 2 - Login   --------   ******
   describe("When I do fill fields in correct format and I click on admin button Login In", () => {
     test("Then I should be identified as an HR admin in app", () => {
       document.body.innerHTML = LoginUI();
@@ -181,7 +182,6 @@ describe("Given that I am a user on login page", () => {
 
       const form = screen.getByTestId("form-admin");
 
-      // localStorage should be populated with form data
       Object.defineProperty(window, "localStorage", {
         value: {
           getItem: jest.fn(() => null),
@@ -190,7 +190,6 @@ describe("Given that I am a user on login page", () => {
         writable: true,
       });
 
-      // we have to mock navigation to test it
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
       };
@@ -230,7 +229,6 @@ describe("Given that I am a user on login page", () => {
   });
   describe("when store is unavailable", () => {
     test("then login() returns null", async () => {
-      //TODO: revoir où mettre le test pour séparer des test d'intégrations
       //arrange
       function getLoginFormHTML() {
         return LoginUI();
@@ -256,7 +254,6 @@ describe("Given that I am a user on login page", () => {
       //assert
       expect(result).toBe(null);
     });
-    //TODO: revoir où mettre le test pour séparer des test d'intégrations
 
     test("then CreateUser() returns null", () => {
       //arrange

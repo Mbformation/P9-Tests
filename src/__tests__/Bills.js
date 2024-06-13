@@ -112,13 +112,14 @@ describe("Given I am connected as an employee", () => {
       // AJOUT EXPECT
       expect(windowIcon.className).toBe("active-icon");
     });
+    // ******   --------    BUG REPORT 1 - Bills   --------   ******
     test("Then bills should be ordered from earliest to latest", () => {
       //Arrange on prépare les données à tester
       const dateRegex =
         /^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i;
       const antiChrono = (a, b) => (a < b ? 1 : -1);
       //Act
-      document.body.innerHTML = BillsUI({ data: bills }); // on récupère les el html et on construit un tableau de dates
+      document.body.innerHTML = BillsUI({ data: bills }); // on injecte des bills mockées qui proviennent de /fixtures/bills.js
       // Assert
       const dates = screen.getAllByText(dateRegex).map((a) => a.innerHTML);
       const datesSorted = [...dates].sort(antiChrono);
@@ -140,8 +141,7 @@ describe("Given I am connected as an employee", () => {
       // Assert
       expect(mockNavigate).toHaveBeenCalledWith(ROUTES_PATH["NewBill"]);
     });
-    test("UI/UX Test: ", () => {
-      //TODO: préciser objet du test
+    test("UI/UX Test: user successfully navigates to NewBill page", () => {
       // Arrange
       document.body.innerHTML = BillsUI({ data: bills });
       const mockNavigate = jest.fn((path) => path);

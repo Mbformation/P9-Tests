@@ -14,6 +14,7 @@ jest.mock("../app/store", () => mockStore);
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page", () => {
+    // ******   --------    BUG HUNT 1 - NewBill   --------   ******
     test("Unit Test: handleChangeFile() should add the correct file as a new bill", async () => {
       //arrange
       const html = NewBillUI();
@@ -31,6 +32,7 @@ describe("Given I am connected as an employee", () => {
         preventDefault: mockPreventDefault,
       };
       localStorageMock.setItem("user", { email });
+      // on instancie un nouveau NewBill
       const newBill = new NewBill({
         document,
         store,
@@ -70,8 +72,7 @@ describe("Given I am connected as an employee", () => {
       expect(mockPreventDefault).toHaveBeenCalled();
       expect(newBill.fileName).toBe(null);
     });
-    test("Then 2...", async () => {
-      //TODO revoir l'objet du test
+    test("Then the correct files should have been submitted", async () => {
       //arrange
       const mockPreventDefault = jest.fn(() => {
         return;

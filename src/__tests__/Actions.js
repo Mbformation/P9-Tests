@@ -12,7 +12,6 @@ import billsMock from "../__mocks__/store.js";
 describe("Given I am connected as an Employee", () => {
   describe("When I am on Bills page and there are bills", () => {
     test("Then, it should render icon eye", () => {
-      //TODO: voir si ce test sert code coverage, sinon enlever
       const html = Actions();
       document.body.innerHTML = html;
       expect(screen.getByTestId("icon-eye")).toBeTruthy();
@@ -20,7 +19,6 @@ describe("Given I am connected as an Employee", () => {
   });
   describe("When I am on Bills page and there are bills with url for file", () => {
     test("Then, it should save given url in data-bill-url custom attribute", () => {
-      //TODO: revoir objet du test ? commenter test
       const url = "/fake_url";
       const html = Actions(url);
       document.body.innerHTML = html;
@@ -32,7 +30,6 @@ describe("Given I am connected as an Employee", () => {
   });
   describe("When I am on Bills page and I click on icon eye", () => {
     test("Then it should call handleClickIconEye", () => {
-      //TODO commenter ce test
       //Arrange
       const html = Actions();
       document.body.innerHTML = html;

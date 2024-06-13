@@ -24,11 +24,15 @@ const row = (bill) => {
 const rows = (data) => {
   return data && data.length
     ? data
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // ajout de la méthode d'ordre anti-chonologique
         .map((bill) => row(bill))
         .join("")
     : "";
 };
+// VERSION D'ORIGINE:
+// const rows = (data) => {
+//   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+// }
 
 export default ({ data: bills, loading, error }) => {
   const modal = () => `
