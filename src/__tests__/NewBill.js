@@ -135,4 +135,3 @@ test("creates new bill from mock API POST", async () => {
   expect(contentPage).toBeTruthy();
 });
 
-//TODO (erreurs 404, 500),  inclure les mock dans fichiers dans dossier mock
