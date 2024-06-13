@@ -131,7 +131,6 @@ test("creates new bill from mock API POST", async () => {
   //assert
 
   await waitFor(() => screen.getByText("Mes notes de frais"));
-  const contentPage = await screen.getByText("Mes notes de frais"); //1
+  const contentPage = await screen.getByText("Mes notes de frais");
   expect(contentPage).toBeTruthy();
 });
-

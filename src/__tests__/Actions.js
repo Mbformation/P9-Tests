@@ -35,14 +35,13 @@ describe("Given I am connected as an Employee", () => {
       document.body.innerHTML = html;
       const iconEye = screen.getByTestId("icon-eye");
       const bills = new Bills({ document: document, store: billsMock });
-      //Act
       const handleClickIconEye = jest.fn((e) => {
         return;
       });
       bills.handleClickIconEye = handleClickIconEye;
-
+      //Act
       userEvent.click(iconEye);
-
+      // Assert
       expect(handleClickIconEye).toHaveBeenCalled();
     });
   });
